@@ -1,0 +1,27 @@
+#!/usr/bin/perl
+use warnings;
+use strict; # Require scope in variable declarations
+
+# Simple script to convert currencies, test
+# standard i/o, and practice basic syntax in Perl
+
+print "What currency are you converting from?\n";
+my $from = <STDIN>; # "my" indicates local variable, "our" would be global
+chomp($from); # Removes newline from STDIN
+
+print "What currency are you converting to?\n";
+my $to = <STDIN>;
+chomp($to); # Removes newline from STDIN
+
+print "What is the exchange rate for ", $to, " to ", $from, "?\n";
+my $rate = <STDIN>;
+chomp($rate); # Removes newline from STDIN
+
+print "What amount of ", $from, " would you like to convert?\n";
+my $amount = <STDIN>;
+chomp($amount); # Removes newline from STDIN
+
+# Rounds result to two decimal places
+my $result = sprintf("%.2f", $amount/$rate);
+
+print "OK, ", $amount, " ", $from, " is ", $result, " ",  $to, ".\n";
