@@ -1,0 +1,31 @@
+#!/usr/bin/perl                                                                                                                                                                                                                                                                 
+use warnings;
+use strict;
+
+# Disable buffering so print doesn't accumulate before flushing 
+$| = 1;
+
+# Initialize an array:  
+my @array = (1, 2, 3, 4, 5);
+my $element;
+
+# To format a "for" loop: 
+# for <ITERATOR> (<LIST OR ARRAY>) <BLOCK>
+
+# Counts to 5
+for $element (@array) {
+    print ($element, " "); 
+    # Number in sleep command represents seconds
+    sleep 1;
+}
+print ("\n");
+
+# Reverse the order of an array:
+@array = reverse(@array);
+
+# Counts down from 5
+for $element (@array) {
+    print ($element, " "); 
+    sleep 1;
+}
+print ("\n");
