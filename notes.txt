@@ -36,6 +36,8 @@ print (1..6);
 print(reverse("this","that"));
 # prints the list backwards, so "thatthis"
 
+----------------------------------ARRAYS----------------------------------------
+
 To assign an array, use @:
 @myArray = (1, 2, 3)
 
@@ -78,3 +80,88 @@ Swap two variables:
 Swap two array elements:
 @array[3,4] = @array[4,3];
 
+Special $_ variable:
+When processing a "for" loop, $_ becomes each element of the list or array.
+For example:
+my @array = (1, 2, 3);
+for (@array) {
+    $_ *= 10;
+}
+print "@array\n"
+# will print "10, 20, 30" plus newline
+
+To get the position of last element in an array, use $#array:
+my @array = qw(alpha bravo charlie delta);
+print (scalar @array, "\n");
+print ($#array, "\n");
+# will print 4 and then 3, since 4 is length and 3 is pos of last element
+
+So to do a for loop from 0 to last element, do:
+for (0..$#array);
+
+Pop/push with arrays:
+$poppedElement = pop @array;
+# pops the last element off of @array and puts it in $poppedElement
+push @array, $poppedElement;
+# pushes the element back onto the end of the  array
+
+Shift/unshift with arrays:
+Same as pop/push, but for the front of an array.
+$shiftedElement = shift @array;
+# removes the first element of the array and puts it in $shiftedElement
+unshift @array, $shiftedElement;
+# puts the element back at the front of the array
+
+Sort: operator that takes a list and puts it in ASCII (string) order.
+my @array = (4, 1, 3, 2);
+my @sortedArray = sort @array;
+
+To sort in numeric order:
+my @array = (3, 11, 1, 34, 4);
+my @ASCIISortedArray = sort {$a cmp $b};	# 1, 11, 3, 34, 4
+my @numericallySortedArray = sort {$a <=> $b};  # 1, 3, 4, 11, 34
+
+----------------------------------HASHES----------------------------------------
+
+To declare a hash, use % in one of two ways:
+   1. List of pairs:
+      %newHash=(
+		"Naim", "Ayat",
+		"John", "Doe",
+		"Jane", "Doe",
+      );
+   2. List of pairs denoted by =>. Same as a comma, but everything on
+      the left is automatically treated as a double-quoted string.
+      %newHash=(
+		Naim => "Ayat",
+		John => "Doe",
+		Jane => "Doe",
+      );
+Note: scalars on the left are called hash keys, scalars on the right are called
+values. Hash keys must be unique.
+
+Convert from array to hash:
+@array = ("Naim", "Ayat", "John", "Doe", "Jane", "Doe");
+%newHash = @array;
+
+Convert from hash to array:
+@array = #newHash;
+Note: hashes are unordered, apart from the fact that values will always follow their keys.
+Be careful when converting from hash to array.
+
+To reverse the positions of hash keys and values:
+@array = %newHash
+%reversedHash = reverse @array
+Note: if two values were the same, converting them to keys means that one will be lost.
+
+To add an entry to a hash:
+$newHash{George} = "Washington";
+print "George's last name is $newHash{George}\n";
+
+To delete a hash entry:
+delete ($newHash{George});
+
+To loop through a hash, use the keys function:
+for (keys %newHash){
+    print "$_'s last name is $newHash{$_}\n";
+}

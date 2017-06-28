@@ -1,0 +1,90 @@
+Chapters 1/2/3:
+________________________________________________________________________________
+
+To assign a scalar, use $:
+$myScalar = 31
+$myOtherScalar = "Hello"
+# Perl does not require type to be stated.
+
+Lists are automatically flattened.
+Ex: (1, 2, 3, 4) is the same as ((1, 2), (3, 4)).
+
+Good practice to start every program with: 
+#!/usr/bin/perl
+use warnings;
+use strict;
+
+print("apple", "banana", "carrot") [2];
+# prints "carrot"
+
+print("apple", "banana", "carrot") [-1];
+# also prints "carrot"
+
+print("apple", "banana", "carrot") [1.9];
+# prints "banana" because perl floors the number
+
+We can assign vars in a list with another list:
+($varOne, $varTwo) = (1, 2);
+
+print("apple", "banana", "carrot") [$varOne, $varTwo];
+# prints "bananacarrot"
+
+Ranges: use ".." like this:
+print (1..6);
+# prints 123456
+
+print(reverse("this","that"));
+# prints the list backwards, so "thatthis"
+
+To assign an array, use @:
+@myArray = (1, 2, 3)
+
+To get array length in a scalar:
+$scalar = @myArray;
+is the same as
+$scalar = 3;
+
+To stringify an array:
+$scalar = "@myArray\n";
+is the same as
+$scalar = "1 2 3\n";
+
+Adding to an array:
+@array1 = (1, 2, 3);
+@array2 = (@array1, 4, 5, 6);
+print "array2\n";
+# prints "1 2 3 4 5 6"
+
+Another way to get array length:
+print scalar @array1;
+# prints 3
+
+To get an element in an array:
+@array = ("a", "b", "c")
+$element = $array[0];
+# we use "$array" instead of "@array" in the above statement because we are
+# getting a scalar, not a list
+
+To get an array slice:
+@sales = (401, 512, 841, 926);
+print ("@sales[1..3]\n");
+# prints "512 841 926" plus newline
+print (@sales[1..3]):
+# prints "512841926"
+
+Swap two variables:
+($varOne, $varTwo) = ($varTwo, $varOne);
+
+Swap two array elements:
+@array[3,4] = @array[4,3];
+
+Special $_ variable:
+When processing a "for" loop, $_ becomes each element of the list or array.
+For example:
+my @array = (1, 2, 3);
+for (@array) {
+    $_ *= 10;
+}
+print "@array\n"
+# will print "10, 20, 30" plus newline
+

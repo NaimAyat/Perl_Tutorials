@@ -1,5 +1,0 @@
-#!/usr/bin/perl
-use warnings;
-
-print "C:\\some\\directory\\\n";
-print 'C:\some\directory\ ', "\n";
