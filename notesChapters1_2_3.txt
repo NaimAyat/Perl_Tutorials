@@ -1,7 +1,6 @@
-Chapters 1/2/3:
-________________________________________________________________________________
+----- Notes on chapters 1,2, and 3 of Beginning Perl (Simon Cozens, 2000). -----
 
-----------------------------------SCALARS---------------------------------------
+--------------------------------- SCALARS --------------------------------------
 
 To assign a scalar, use $:
 $myScalar = 31
@@ -38,7 +37,7 @@ print (1..6);
 print(reverse("this","that"));
 # prints the list backwards, so "thatthis"
 
-----------------------------------ARRAYS----------------------------------------
+--------------------------------- ARRAYS ---------------------------------------
 
 To assign an array, use @:
 @myArray = (1, 2, 3)
@@ -123,7 +122,7 @@ my @array = (3, 11, 1, 34, 4);
 my @ASCIISortedArray = sort {$a cmp $b};	# 1, 11, 3, 34, 4
 my @numericallySortedArray = sort {$a <=> $b};  # 1, 3, 4, 11, 34
 
-----------------------------------HASHES----------------------------------------
+--------------------------------- HASHES ---------------------------------------
 
 To declare a hash, use % in one of two ways:
    1. List of pairs:
