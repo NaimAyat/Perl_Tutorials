@@ -1,6 +1,6 @@
 ----- Notes on chapters 1,2, and 3 of Beginning Perl (Simon Cozens, 2000). -----
 
---------------------------------- SCALARS -------------------------------------
+--------------------------------- SCALARS --------------------------------------
 
 To assign a scalar, use $:
 $myScalar = 31
