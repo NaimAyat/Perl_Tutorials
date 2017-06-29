@@ -7,6 +7,7 @@ if (not exists $rates{$to}) {
 Boolean logic notes:
         -An empty string, "", is false.
         -The number zero and the string "0" are both false.
+        -0.0, or any variation of 0 other than simply 0, is true.
         -An empty list, (), is false.
         -The undefined value is false.
         -Everything else is true.
