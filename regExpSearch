@@ -1,0 +1,55 @@
+#!/usr/bin/perl
+use warnings;
+use strict;
+
+# Given text and a key term, determines whether the key term is in the text.
+# Supports case-sensitive and case-insensitive search options.
+
+# Written to test regular expressions and subroutines in Perl.
+
+# Create subroutine to ask user for case-sensitivity preference
+sub case_check {
+    print "Do you want the search to be case-sensitive? ";
+    my $choice = <STDIN>;
+    chomp($choice);
+    return $choice;
+}
+
+# Perl treats everything not in a subroutine as C would treat "main()"
+print "Enter some text: ";
+my $text = <STDIN>;
+chomp($text);
+
+print "Now enter something to find in that text: ";
+my $keyTerm = <STDIN>;
+chomp($keyTerm);
+
+# Create subroutine for case-sensitive search
+sub sensitive {
+    if ($text =~ /$keyTerm/) { print "Found \"$keyTerm\" in \"$text\".\n"; }
+    else { print "Couldn't find \"$keyTerm\" in \"$text\".\n" }
+}
+
+# Create subroutine for case-insensitive search
+sub insensitive {
+    if ($text =~ /$keyTerm/i) { print "Found \"$keyTerm\" in \"$text\".\n"; }
+    else { print "Couldn't find \"$keyTerm\" in \"$text\".\n" }
+}
+
+# Loop to keep asking user for case-sensitivity preference until valid input
+my $check = 1;
+while ($check) {
+    my $temp = case_check();
+    # lc forces its input to lowercase
+    if (lc($temp) eq "yes") {
+        $check = 0;
+        sensitive();
+    }
+    elsif (lc($temp) eq "no") {
+        $check = 0;
+        insensitive();
+    }
+    else { 
+        print ("I only understand yes and no. ");
+    }
+}
