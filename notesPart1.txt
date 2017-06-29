@@ -146,7 +146,7 @@ Convert from array to hash:
 %newHash = @array;
 
 Convert from hash to array:
-@array = #newHash;
+@array = %newHash;
 Note: hashes are unordered, apart from the fact that values will always follow their keys.
 Be careful when converting from hash to array.
 
