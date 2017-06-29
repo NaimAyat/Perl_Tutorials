@@ -1,0 +1,89 @@
+---------- Notes on chapter 5 of Beginning Perl (Simon Cozens, 2000). ----------
+________________________________________________________________________________
+
+Regular Expressions:
+
+        =~              contains
+        !~              does not contain
+        /some string/   string we want to find is placed inside forward slashes
+        /some string/i  append "i" to make search case insensitive
+        \               escapes special characters (.*?+[](){}^$|\)
+        \Qsome string\E escape sequence contained within \Q and \E
+        ^               matches beginning of a string
+        $               matches end of a string
+        .               matches any character
+        |               "or". yes|maybe matches yes or maybe
+        ?               preceding element occurs either 0 or 1 times
+        +               preceding element occurs 1 or more times
+        {x,y}           preceding element occcurs between x and y times
+        {,y}            preceding element occurs at most y times
+        {x,}            preceding element occurs at least x times
+        {x}             preceding element occurs exactly x times
+________________________________________________________________________________
+
+Wildcard Characters:
+
+         ^              negates a character class. Ex: [^abc] is not a, b, or c
+         []                                                               range
+         \d or [0-9]                                                 digits 0-9
+         \w or [0-9/a-Za-z_]                                 a number or letter
+         \s [ \t\n\r]      a whitespace character (space, tab, newline, return)
+         \D                                                  not a digit [^0-9]
+         \W                                not a number or letter [^0-9A-Za-z_]
+         \S                                           not whitespace [^ \t\n\r]
+         \b      matches a boundary (whitespace or the beginning/end of a line)
+
+Posix and Unicode Classes:
+
+      [[:alpha:]] [a-zA-Z]                         An alphabetic character.
+
+      [[:alnum:]] [0-9A-Za-z]           An alphabetic or numeric character.
+
+      [[:digit:]] \d                                          A digit, 0-9.
+
+      [[:lower:]] [a-z]                                A lower case letter.
+
+      [[:upper:]] [A-Z]                               An upper case letter.
+
+      [[:punct:]] [!"#$%&'()*+,-./:;<=>?@\[\\\]^_`{|}~] A punctuation char.
+________________________________________________________________________________
+
+Backreferences:
+
+	Perl has special variables $1, $2, $3... that hold the elements	that
+	are matched by a regular expression
+________________________________________________________________________________
+
+while (<>) {statment}
+
+      Opens file specified in command line, loops through it and feeds each
+      line to the special variable $_
+________________________________________________________________________________
+
+Substitution is done with the s/// operator:
+
+             s/matchThis/replaceWithThis/
+             append g to make global substitutions s///g
+________________________________________________________________________________
+
+Modifiers:
+
+	/i case insensitive
+	/g globally substitute or match	multiple times
+	/m treat string as multiple lines
+	/s treat string as single line
+	/x allow the use of whitespace and comments inside a match
+________________________________________________________________________________
+
+Split:
+
+	The split command  breaks its input into a set of substrings. If
+	no delimeter is	specified, whitespace is used.
+  Syntax: split delimeter, elementToSplit;
+________________________________________________________________________________
+
+Join:
+
+  Opposite of split.
+  Syntax: join delimeter, elementToJoin;
+________________________________________________________________________________
