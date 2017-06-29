@@ -1,6 +1,6 @@
 ---------- Notes on chapter 4 of Beginning Perl (Simon Cozens, 2000). ----------
 
-Check if something exists in a hash table, simply use the "exists" keyword:
+To check if something exists in a data set, simply use the "exists" keyword:
 if (not exists $rates{$to}) {
    die "That input is invalid!\n";
 
