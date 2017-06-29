@@ -1,10 +1,10 @@
 ---------- Notes on chapter 4 of Beginning Perl (Simon Cozens, 2000). ----------
 
 To check if something exists in a data set, simply use the "exists" keyword:
-if (not exists $rates{$to}) {
-   die "That input is invalid!\n";
+   if (not exists $rates{$to}) {
+      die "That input is invalid!\n";
 
-Boolean logic notes:
+Boolean logic:
         -An empty string, "", is false.
         -The number zero and the string "0" are both false.
         -0.0, or any variation of 0 other than simply 0, is true.
@@ -12,82 +12,82 @@ Boolean logic notes:
         -The undefined value is false.
         -Everything else is true.
 
-String comparison notes:
+String comparison:
        -($a gt $b) $a sorts alphabetically after $b
        -($a le $b) $a sorts alphabetically before $b
        -($a eq $b $)a is the same as $b
        -($a ne $b) $a is not the same as $b
 
 Check if a variable is defined with the "defined" keyword:
-if (defined $a);
+   if (defined $a);
 
 Perl features an "unless" command:
-unless (exists $rates($to)) {
-    die "That input is invalid!\n";
+   unless (exists $rates($to)) {
+      die "That input is invalid!\n";
 
 Else/elseif syntax:
-if (condition){
-   action
-} elseif (condition2){
-   action2
-} else {
-   # everything else failed
-   action3
-}
+   if (condition){
+      action
+   } elseif (condition2){
+      action2
+   } else {
+      # everything else failed
+      action3
+   }
 
 While loop syntax:
-while (condition) {action};
-Also valid:
-{action} while (condition)
+   while (condition) {action};
+   Also valid:
+   {action} while (condition)
 
 Example:
-my $count = 5;
-print "Counting down: ";
-while ($count > 0) {
-   print "$count ";
-   count--;
-} # prints "5 4 3 2 1 "
+   my $count = 5;
+   print "Counting down: ";
+   while ($count > 0) {
+      print "$count ";
+      count--;
+   } # prints "5 4 3 2 1 "
 
 ARGV: Argument vector, takes arguments passed via command line
 
 Do-while loops also valid a la C/C++.
-Syntax:
-do {actions} while (condition)
+   Syntax:
+   do {actions} while (condition)
 
 "Until" loops - unique to Perl:
-until (condition) {statement};
-Example:
-my $count = 5;
-until ($count-- == 0) {
-   print "$count ";
-} # prints "5 4 3 2 1 "
+   until (condition) {statement};
+   Example:
+   my $count = 5;
+   until ($count-- == 0) {
+      print "$count ";
+   } # prints "5 4 3 2 1 "
 
 To break out of a loop, use the keyword "last".
-Example:
-my @array = ("a","b","c","stop","d");
-for (@array) {
-   if ($_ eq "stop") {last;}
-   print "$_ ";
-} # prints "a b c "
+   Example:
+   my @array = ("a","b","c","stop","d");
+   for (@array) {
+      if ($_ eq "stop") {last;}
+      print "$_ ";
+   } # prints "a b c "
 
 To skip an iteration of a loop, use the "next" keyword.
-Example:
-my @array = ("a","b","c","skip","d");
-for (@array) {
-   if ($_ eq "skip") {next;}
-   print "$_ ";
-} # prints "a b c d "
+   Example:
+   my @array = ("a","b","c","skip","d");
+   for (@array) {
+      if ($_ eq "skip") {next;}
+      print "$_ ";
+   } # prints "a b c d "
 
 To redo an iteration of a loop, use the "redo" keyword.
 
 Loops can be labeled, ie. given a name before the for, while, or until.
 The convention is that these labels are formed with all uppercase letters.
-Example:
-my @array = ("keep", "going", "stop", "now", "what");
-OUTERLOOP: for (@array) {
-   print "$_ ";
-   last OUTERLOOP if ($_ eq "stop");
-} # prints "keep going stop "
+   Example:
+   my @array = ("keep", "going", "stop", "now", "what");
+   OUTERLOOP: for (@array) {
+      print "$_ ";
+      last OUTERLOOP if ($_ eq "stop");
+   } # prints "keep going stop "
 
 Goto LABEL:
-Valid command, but - as in other languages - not good practice.
+   Valid command, but - as in other languages - not good practice.
