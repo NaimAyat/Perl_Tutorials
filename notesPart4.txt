@@ -1,0 +1,88 @@
+---------- Notes on chapter 6 of Beginning Perl (Simon Cozens, 2000). ----------
+
+--------------------------------- READING --------------------------------------
+
+To open a filehandle for reading:
+   open FH, $filename or die $!;
+where FH is the name we give (convention is all uppercase) and $! is a special
+variable that gives the reason open failed.
+
+We can also open a filehandle with a string literal:
+   open FH, 'file.txt' or die $!;
+
+To read lines from a file, just use <FH> like <STDIN>.
+Like <STDIN> reads one line of input, <FH> reads one line from a filehandle.
+
+ARGV reads the names of files from the command line and opens them all.
+If there aren't any, it reads from STDIN.
+
+@ARGV holds any text after the program's name on the command line.
+<ARGV> takes each file in turn. Can be abbreviated to <>.
+$ARGV is the name of the file currently being read.
+
+while (<FH>) reads in every line at once. Very memory-intensive; should avoid.
+Example to store evey line in an array:
+        open INPUT, "somefile.txt" or die $!;
+        my @data;
+        @data = <INPUT>;
+
+Input record separator ($/) is newline by default. We can reassign it as with
+any other variable. If we set it to the empty string ($/ = ""), it reads in a
+paragraph at a time. Paragraphs in this sense are separated by a blank line.
+
+To read the entire file into a single string, set ($/ = undef).
+Example:
+        $/ = undef;
+        open INPUT, "somefile.txt" or die $!;
+        $wholeFile = <INPUT>;
+
+Diamond	operator <FILEHANDLE> reads in a line from the file. We	control	the
+definition of a	line by	altering the record separator, $/.
+
+--------------------------------- WRITING -------------------------------------
+
+To open a file for writing (and overwrite it):
+   open FH, "> $filename" or die $!;
+
+To open a file for writing (and append to it instead of overwriting):
+   open FH, ">> $filename" or die $!;
+
+When we want to	write to the file, we use a slightly modified print: 
+     print FH "something";
+
+To change the default print to print FILEHANDLE:
+   select FILEHANDLE;
+
+To turn off buffering: 
+   $| = 1;
+Coversely, to turn on buffering (default):
+   $| = 0;
+
+------------------------------- FILE TESTS ------------------------------------
+
+-e              True if the file exists.
+-f              True if the file is a plain file – not a directory.
+-d              True if the file is a directory.
+-z              True if the file has zero size.
+-s              True if the file has nonzero size – returns file size in bytes.
+-r              True if the file is readable by you.
+-w              True if the file is writable by you.
+-x              True if the file is executable by you.
+-o              True if the file is owned by you.
+
+Syntax example:
+        if (-e $filename) {statement}
+        
+------------------------------- DIRECTORIES -----------------------------------
+
+Glob takes a string and returns the matching files. * matches any text.
+To get all the files in a directory:
+   my @files = glob("*")
+
+Open directories with opendir:
+     opendir DH, "." or die $!;
+
+Read directories with readdir:
+     while ($_ = readdir(DH)) {statement}
+     
+-------------------------------------------------------------------------------
