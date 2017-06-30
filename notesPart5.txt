@@ -2,7 +2,8 @@
 
 Perl supports references, not pointers. The difference:
 A pointer is a variable which stores the address of another variable.
-A reference is a variable which refers to another variable.
+A reference is a variable which refers to another variable. They serve mainly
+to put data structures within other data structures.
 
 In C++, we can create a reference like this:
    int i = 3;
