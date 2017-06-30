@@ -1,5 +1,7 @@
 ---------- Notes on chapter 8 of Beginning Perl (Simon Cozens, 2000). ----------
 
+-------------------------------- SUBROUTINES -----------------------------------
+
 Subroutines don't return anything unless they are explicitly told to. Here's how
 to define one:
    sub name_of_sub {
