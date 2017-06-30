@@ -1,0 +1,79 @@
+---------- Notes on chapter 8 of Beginning Perl (Simon Cozens, 2000). ----------
+
+Subroutines don't return anything unless they are explicitly told to. Here's how
+to define one:
+   sub name_of_sub {
+       # code goes here
+   }
+
+Prototypes:
+   sub name_of_sub($$$) {
+       # takes 3 scalars as input
+   }
+   sub another_sub(\@\@) {
+       # takes 2 array references as input
+   }
+
+To pre-declare a subroutine:
+   sub name_of_sub;
+   sub another_sub($$); # Prototyped to take two scalars
+Or, as popular in Perl 4:
+   &name_of_sub;
+
+To pass agruments into a subroutine:
+   name_of_sub(1,2,3);
+   name_of_sub(1...100);
+We can pass any list into a subroutine as we would into a print statement. Each
+element that gets passed in ends up in the special array @_
+
+Example subroutine to sum all numbers passed in:
+   sub total {
+      my $total = 0;
+      $total += $_ for @_;
+      print "The total is $total\n";
+   }
+
+---------------------------------- CACHING -------------------------------------
+
+Store each answer generated from a set of parameters into a cache, usually hash.
+If we need to calculate using those parameters again, we get the answer from
+the cache rather than needing to recompute.
+
+   my %cache;
+   sub first_line {
+      my $filename = shift;
+      return $cache{$filename} if exists $cache{$filename}
+      open FILE, $filename or return "";
+      my $line = <FILE>;
+      $cache{filename} = $line;
+      return $line;
+   }
+
+----------------------------------- SCOPE --------------------------------------
+
+Global is the default if "my" is not specified.
+
+By default, we are in the package called "main".
+
+Thus, saying $x = 10 is really saying $main::x = 10.
+
+We can create other packages to use the same variable name like so:
+   $Joe::name = "Joe Johnson";
+   $Naim::name = "Naim Ayat";
+
+We can change the package we are currently working in by saying:
+   package Joe;
+   print $name;         # this returns "Joe Johnson"
+
+------------------------- REFERENCES TO SUBROUTINES ----------------------------
+
+Use ampersand to declare:
+    sub my_sub { print "Hello\n"; }
+    my $subReference = \&my_sub
+
+Call like any other reference:
+    &{$subReference};
+    &{$subReference}(@parameters);
+    $subReference->();
+    $subReference->(@parameters);
+________________________________________________________________________________
