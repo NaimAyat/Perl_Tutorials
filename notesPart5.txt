@@ -1,17 +1,17 @@
 ---------- Notes on chapter 7 of Beginning Perl (Simon Cozens, 2000). ----------
 
-Perl supports references, not pointers.	The difference:
+Perl supports references, not pointers. The difference:
 A pointer is a variable which stores the address of another variable.
-A reference is a variable which refers to another variable. 
+A reference is a variable which refers to another variable.
 
 In C++, we can create a reference like this:
    int i = 3;
-   int &ref = i;  
+   int &ref = i;
    ref = 13     # now i == 13
 
 Perl is similar, but a reference is created with \ rather than &. A reference in
 Perl is a scalar. It can refer to anything - another scalar, an array, or a hash
-table. Example: 
+table. Example:
        my @array = ("here's", "an", "array");
        my $arrayReference = \@array;
        my %hash = (here's => a, hash => table);
@@ -31,22 +31,74 @@ Anonymous references:
 
           To get a hash reference instead of a hash, use curly braces {}
           instead of parentheses:
-              my $hashReference	= {hello => "bonjour", food => "aliments"}
+              my $hashReference = {hello => "bonjour", food => "aliments"}
 
 Dereferencing data:
-	  Put the reference in curly braces {} where you would normally use a
+          Put the reference in curly braces {} where you would normally use a
           variable's name:
              my @array = (1, 2, 3);
              my $arrayRef = \@array;
              my @array2 = @{$arrayRef};
              # Now we can use @{$arrayRef} and @array2 in place of @array
-          Note:	modifying @array2 will not change the values in @array.
-		Modifying @{$arrayRef} however, will.
+          Note: modifying @array2 will not change the values in @array.
+                Modifying @{$arrayRef} however, will.
 
 Instead of ${$reference}, we can also write $ref->
+For example. say we want to change the first element of	a referenced array to 1:
+   my @array = (68, 101, 114, 111, 117);
+   my $ref = \@array;
+   ${$ref}[0] = 100;
+Is the same as:
+   my @array = (68, 101, 114, 111, 117);
+   my $ref = \@array;
+   $ref->[0] = 100;
+We can get to an array-in-an-array like	this:
+   $element = $ref->[2]->[1];
+It is valid to  simplify this by removing the arrow	between	brackets:
+   $element = $ref->[2][1];
 
 ----------------------------- DATA STRUCTURES ----------------------------------
 
-Matricies:
-        To get an element: $array[$row]->[$column]
+Autovivification: Perl automatically creates new arrays and hashes as required
+when an undefined value is dereferenced; they don't have to be initialized
+beforehand.
+________________________________________________________________________________
 
+Matricies (arrays of arrays)
+
+To get an element:
+       $array[$row]->[$column];
+________________________________________________________________________________
+
+Trees
+
+Declaration example:
+        $addressbook{"Aaron Johnson"} = {
+                address => "123 Main St",
+                phone => "5551234567"
+        };
+To print a person in the address book:
+        if (exists $addressbook{$who}) {
+                print "$who\n";
+                print "Address: ", $addressbook{$who}->{address}, "\n";
+                print "Phone no: ", $addressbook{$who}->{phone}, "\n";
+        }
+Delete an entry:
+       delete $addressbook{$who};
+Add a level to the tree:
+       $addressbook{"Paddy Malone"} = {
+                address => "23, Blue Jay Way",
+                phone => "404-6599",
+                friends => [ "Baba O'Reilly", "Mick Flaherty" ]
+        };
+________________________________________________________________________________
+
+Linked Lists
+
+One part of each record in the list refers to >=1 other record in the list.
+
+    friends => { "Baba O'Reilly" => $addressbook("Baba O'Reilly"),
+                 "Mick Flaherty" => $addressbook("Mick Flaherty"),
+                  "Dan Maharry" => $work[4109]
+               }
+________________________________________________________________________________
