@@ -1,6 +1,6 @@
 ---------- Notes on chapter 6 of Beginning Perl (Simon Cozens, 2000). ----------
 
---------------------------------- READING --------------------------------------
+------------------------------ READING FILES -----------------------------------
 
 To open a filehandle for reading:
    open FH, $filename or die $!;
@@ -39,7 +39,7 @@ Example:
 Diamond	operator <FILEHANDLE> reads in a line from the file. We	control	the
 definition of a	line by	altering the record separator, $/.
 
---------------------------------- WRITING -------------------------------------
+----------------------------- WRITING TO FILES ---------------------------------
 
 To open a file for writing (and overwrite it):
    open FH, "> $filename" or die $!;
@@ -58,7 +58,7 @@ To turn off buffering:
 Coversely, to turn on buffering (default):
    $| = 0;
 
-------------------------------- FILE TESTS ------------------------------------
+-------------------------------- FILE TESTS ------------------------------------
 
 -e              True if the file exists.
 -f              True if the file is a plain file – not a directory.
@@ -73,7 +73,7 @@ Coversely, to turn on buffering (default):
 Syntax example:
         if (-e $filename) {statement}
         
-------------------------------- DIRECTORIES -----------------------------------
+-------------------------------- DIRECTORIES -----------------------------------
 
 Glob takes a string and returns the matching files. * matches any text.
 To get all the files in a directory:
@@ -85,4 +85,4 @@ Open directories with opendir:
 Read directories with readdir:
      while ($_ = readdir(DH)) {statement}
      
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
