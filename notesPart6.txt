@@ -65,7 +65,7 @@ We can create other packages to use the same variable name like so:
 
 We can change the package we are currently working in by saying:
    package Joe;
-   print $name;         # this returns "Joe Johnson"
+   print $name;         # this now returns "Joe Johnson"
 
 ------------------------- REFERENCES TO SUBROUTINES ----------------------------
 
