@@ -79,7 +79,8 @@ Split:
 
 	The split command  breaks its input into a set of substrings. If
 	no delimeter is	specified, whitespace is used.
-  Syntax: split delimeter, elementToSplit;
+
+  	Syntax: split delimeter, elementToSplit;
 ________________________________________________________________________________
 
 Join:
