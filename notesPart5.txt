@@ -1,0 +1,51 @@
+---------- Notes on chapter 7 of Beginning Perl (Simon Cozens, 2000). ----------
+
+Perl supports references, not pointers.	The difference:
+A pointer is a variable which stores the address of another variable.
+A reference is a variable which refers to another variable. 
+
+In C++, we can create a reference like this:
+   int i = 3;
+   int &ref = i;  
+   ref = 13     # now i == 13
+
+Perl is similar, but a reference is created with \ rather than &. A reference in
+Perl is a scalar. It can refer to anything - another scalar, an array, or a hash
+table. Example: 
+       my @array = ("here's", "an", "array");
+       my $arrayReference = \@array;
+       my %hash = (here's => a, hash => table);
+       my $hashReference = \%hash;
+
+We treat references like ordinary scalars. We can put them in an array:
+   my $a = 1;
+   my $b = 2;
+   my $c = 3;
+   my @references = (\$a, $\b, $\c);
+   # The above line can also be written with \($a, $b, $c);
+
+Anonymous references:
+          To get an array references instead of an array, use square brackets []
+          instead of parentheses:
+              my $arrayReference = [1, 2, 3];
+
+          To get a hash reference instead of a hash, use curly braces {}
+          instead of parentheses:
+              my $hashReference	= {hello => "bonjour", food => "aliments"}
+
+Dereferencing data:
+	  Put the reference in curly braces {} where you would normally use a
+          variable's name:
+             my @array = (1, 2, 3);
+             my $arrayRef = \@array;
+             my @array2 = @{$arrayRef};
+             # Now we can use @{$arrayRef} and @array2 in place of @array
+          Note:	modifying @array2 will not change the values in @array.
+		Modifying @{$arrayRef} however, will.
+
+Instead of ${$reference}, we can also write $ref->
+
+----------------------------- DATA STRUCTURES ----------------------------------
+
+Matricies:
+        To get an element: $array[$row]->[$column]
