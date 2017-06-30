@@ -3,6 +3,7 @@
 To check if something exists in a data set, simply use the "exists" keyword:
    if (not exists $rates{$to}) {
       die "That input is invalid!\n";
+________________________________________________________________________________
 
 Boolean logic:
         -An empty string, "", is false.
@@ -11,19 +12,23 @@ Boolean logic:
         -An empty list, (), is false.
         -The undefined value is false.
         -Everything else is true.
+________________________________________________________________________________
 
 String comparison:
        -($a gt $b) $a sorts alphabetically after $b
        -($a le $b) $a sorts alphabetically before $b
        -($a eq $b $)a is the same as $b
        -($a ne $b) $a is not the same as $b
+________________________________________________________________________________
 
 Check if a variable is defined with the "defined" keyword:
    if (defined $a);
+________________________________________________________________________________
 
 Perl features an "unless" command:
    unless (exists $rates($to)) {
       die "That input is invalid!\n";
+________________________________________________________________________________
 
 Else/elseif syntax:
    if (condition){
@@ -34,6 +39,7 @@ Else/elseif syntax:
       # everything else failed
       action3
    }
+________________________________________________________________________________
 
 While loop syntax:
    while (condition) {action};
@@ -47,12 +53,15 @@ Example:
       print "$count ";
       count--;
    } # prints "5 4 3 2 1 "
+________________________________________________________________________________
 
 ARGV: Argument vector, takes arguments passed via command line
+________________________________________________________________________________
 
 Do-while loops also valid a la C/C++.
    Syntax:
    do {actions} while (condition)
+________________________________________________________________________________
 
 "Until" loops - unique to Perl:
    until (condition) {statement};
@@ -61,6 +70,7 @@ Do-while loops also valid a la C/C++.
    until ($count-- == 0) {
       print "$count ";
    } # prints "5 4 3 2 1 "
+________________________________________________________________________________
 
 To break out of a loop, use the keyword "last".
    Example:
@@ -69,6 +79,7 @@ To break out of a loop, use the keyword "last".
       if ($_ eq "stop") {last;}
       print "$_ ";
    } # prints "a b c "
+________________________________________________________________________________
 
 To skip an iteration of a loop, use the "next" keyword.
    Example:
@@ -77,8 +88,10 @@ To skip an iteration of a loop, use the "next" keyword.
       if ($_ eq "skip") {next;}
       print "$_ ";
    } # prints "a b c d "
+________________________________________________________________________________
 
 To redo an iteration of a loop, use the "redo" keyword.
+________________________________________________________________________________
 
 Loops can be labeled, ie. given a name before the for, while, or until.
 The convention is that these labels are formed with all uppercase letters.
@@ -88,6 +101,8 @@ The convention is that these labels are formed with all uppercase letters.
       print "$_ ";
       last OUTERLOOP if ($_ eq "stop");
    } # prints "keep going stop "
+________________________________________________________________________________
 
 Goto LABEL:
    Valid command, but - as in other languages - not good practice.
+________________________________________________________________________________
