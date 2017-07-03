@@ -1,0 +1,58 @@
+---------- Notes on chapter 9 of Beginning Perl (Simon Cozens, 2000). ----------
+
+------------------------- DIAGNOSTIC MODULES / PRAGMAS -------------------------
+
+use warnings;
+    Lexically scoped, gives control over which warnings are enabled in which
+    parts of a Perl program.
+
+use strict;
+    Forces variable scope to be declared.
+
+use diagnostics;
+    Shows perldiag documentation with error messages and warnings.
+
+---------------------------- COMMAND LINE SWITCHES -----------------------------
+
+Can be specified after the shebang in a program:
+    #!/usr/bin/perl -w
+Or in the command line:
+    perl -w myProgram.plx
+
+-w    use warnings
+-e    only for use in command line; run the text following -e as a program
+-n    wraps script; while (<>) { script }
+-p    wraps script; while (<>) { script } continue { print; }
+-c    stops program from executing; instead checks syntax errors
+-i    allows files to be modified in-place; force backup file creation by
+         specifying a file extension immediately after -i (ex. -i.bak)
+-M    load modules from the command line
+-s    interpret all command line switches following the filename as variables
+-I    add directories to module search path (ex. -I/directory/name)
+-a    when used with -n and -p, splits each word into a separate variable and
+         stores them in the array @F
+-F    in conjunction with -a, takes a chosen delimeter as an argument
+-l    adds a newline to everything we print; automatically chomps input if used
+         with -n or -p
+-T    "taint mode"; any data coming into program is tainted
+-d    runs the debugger
+
+---------------------------------- DEBUGGER -----------------------------------
+
+T          obtain a call trace of all subroutines currently being processed
+s          step to next line
+n          step over a subroutine
+Return     repeat the last stepping command
+r          continue until the current subroutine returns
+c          continue until something causes the debugger to stop
+l          list the next few lines to be processed
+-          list the previous lines processed
+w          list the lines around the current line
+/pattern/  search forwards in the code until the pattern matches
+t          toggle trace mode; this prints every statement before executing it
+b          set a breakpoint
+x          evaluate something in array context and give a tree view
+!          redo previous command
+p          print
+h          help
+________________________________________________________________________________
