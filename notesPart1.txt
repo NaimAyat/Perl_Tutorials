@@ -1,6 +1,6 @@
------ Notes on Chapters 1, 2, and 3 of Beginning Perl (Simon Cozens, 2000). -----
+------ Notes on Chapters 1, 2, 3 of Beginning Perl (Simon Cozens, 2000). -------
 
---------------------------------- SCALARS --------------------------------------
+---------------------------------- SCALARS -------------------------------------
 
 To assign a scalar, use $:
 	$myScalar = 31
@@ -95,7 +95,7 @@ To get the position of last element in an array, use $#array:
 	my @array = qw(alpha bravo charlie delta);
 	print (scalar @array, "\n");
 	print ($#array, "\n");
-	# will print 4 and then 3, since 4 is length and 3 is pos of last element
+	# will print 4 then 3, since 4 is length and 3 is pos of last element
 
 So to do a for loop from 0 to last element, do:
 	for (0..$#array);
@@ -147,13 +147,14 @@ Convert from array to hash:
 
 Convert from hash to array:
 	@array = %newHash;
-Note: hashes are unordered, apart from the fact that values will always follow their keys.
-Be careful when converting from hash to array.
+Note: hashes are unordered, apart from the fact that values will always follow 
+their keys. Be careful when converting from hash to array.
 
 To reverse the positions of hash keys and values:
 	@array = %newHash
 	%reversedHash = reverse @array
-Note: if two values were the same, converting them to keys means that one will be lost.
+Note: if two values were the same, converting them to keys means that one 
+will be lost.
 
 To add an entry to a hash:
 	$newHash{George} = "Washington";
