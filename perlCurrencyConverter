@@ -6,7 +6,7 @@ use strict; # Require scope in variable declarations
 # standard i/o, and practice basic syntax in Perl
 
 print "What currency are you converting from?\n";
-my $from = <STDIN>; # "my" indicates local variable, "our" would be global
+my $from = <STDIN>; # "my" indicates local variable, "our" would indicate global
 chomp($from); # Removes newline from STDIN
 
 print "What currency are you converting to?\n";
