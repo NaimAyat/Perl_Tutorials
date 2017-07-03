@@ -21,7 +21,7 @@ To modify @INC:
 ----------------------------- PERL STANDARD MODULES ----------------------------
 
 File::Find - Traverse directory	trees, visit each file,	and run	a subroutine
-             (the callback) on them. There are 2 subroutines;	find & finddepth.
+             (the callback) on them. There are 2 subroutines; find & finddepth.
              Find does a depth-first preorder traversal. Finddepth does	a
              postorder traversal.
 
@@ -44,7 +44,7 @@ File::Spec - Module for	handling, constructing, and splitting file names. It
     catdir($dir1, $dir2)   concatenates two directories
     catfile($dir, $file)   like catdir, but the path will end with a file name	
     tmpdir()               finds a writeable directory for temp files
-    splitpath($path) 	   splits	path into volume, directories, and file name
+    splitpath($path) 	   splits path into volume, directories, and file name
     splitdir($path)        splits path into its constituent directories
     path()                 returns search path for executable files
 
