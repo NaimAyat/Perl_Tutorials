@@ -1,4 +1,4 @@
----------- Notes on chapter 9 of Beginning Perl (Simon Cozens, 2000). ----------
+---------- Notes on Chapter 9 of Beginning Perl (Simon Cozens, 2000). ----------
 
 ------------------------- DIAGNOSTIC MODULES / PRAGMAS -------------------------
 
