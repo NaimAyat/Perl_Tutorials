@@ -1,0 +1,67 @@
+---------- Notes on chapter 9 of Beginning Perl (Simon Cozens, 2000). ----------
+
+Including other files:
+
+do FILENAME;
+   Searches @INC for FILENAME and executes its contents as Perl script.
+
+require FILENAME;
+   Same as "do", but only executes once for each file; will ignore subsequent
+   requires for the same file.
+
+use FILENAME;
+    Same as "require". but executes before everything else in the program
+    no matter where the statement is placed.
+
+To modify @INC: 
+   Use the lib pragma:
+       use lib "my/module/directory"; 
+       use FILENAME; 
+
+----------------------------- PERL STANDARD MODULES ----------------------------
+
+File::Find - Traverse directory	trees, visit each file,	and run	a subroutine
+             (the callback) on them. There are 2 subroutines;	find & finddepth.
+             Find does a depth-first preorder traversal. Finddepth does	a
+             postorder traversal.
+
+    use File::Find;
+    find(\&wanted, @directories_to_search);
+    sub wanted { ... }
+
+    use File::Find;
+    finddepth(\&wanted, @directories_to_search);
+    sub wanted { ... }
+
+Getopt::Std - Process single-character switches with switch clustering.
+
+Getopt::Long - Same as previous, byt for multicharacter switches.
+
+File::Spec - Module for	handling, constructing, and splitting file names. It
+             offers the	following functions:
+
+    canonpath ($path)      cleans up $path to simplest form
+    catdir($dir1, $dir2)   concatenates two directories
+    catfile($dir, $file)   like catdir, but the path will end with a file name	
+    tmpdir()               finds a writeable directory for temp files
+    splitpath($path) 	   splits	path into volume, directories, and file name
+    splitdir($path)        splits path into its constituent directories
+    path()                 returns search path for executable files
+
+--------------------------------- CPAN MODULES ---------------------------------
+
+Use the standard module called CPAN to enter the "CPAN Shell".
+
+To enter, input:	
+   perl -MCPAN -e shell
+Which is the same as saying
+   #!/usr/bin/perl
+   use CPAN; 
+   shell();
+
+To install modules, use install command. For example:
+   install DBD::mysql
+
+To get info on a module, use the i command:
+   i MLDBM
+________________________________________________________________________________
