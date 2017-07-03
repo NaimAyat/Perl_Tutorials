@@ -1,4 +1,4 @@
----------- Notes on chapter 8 of Beginning Perl (Simon Cozens, 2000). ----------
+---------- Notes on Chapter 8 of Beginning Perl (Simon Cozens, 2000). ----------
 
 -------------------------------- SUBROUTINES -----------------------------------
 
