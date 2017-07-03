@@ -1,4 +1,4 @@
----------- Notes on chapter 4 of Beginning Perl (Simon Cozens, 2000). ----------
+---------- Notes on Chapter 4 of Beginning Perl (Simon Cozens, 2000). ----------
 
 To check if something exists in a data set, simply use the "exists" keyword:
    if (not exists $rates{$to}) {
