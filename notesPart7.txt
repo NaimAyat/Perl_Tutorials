@@ -25,16 +25,16 @@ Or in the command line:
 -p    wraps script; while (<>) { script } continue { print; }
 -c    stops program from executing; instead checks syntax errors
 -i    allows files to be modified in-place; force backup file creation by
-         specifying a file extension immediately after -i (ex. -i.bak)
+      specifying a file extension immediately after -i (ex. -i.bak)
 -M    load modules from the command line
 -s    interpret all command line switches following the filename as variables
 -I    add directories to module search path (ex. -I/directory/name)
 -a    when used with -n and -p, splits each word into a separate variable and
-         stores them in the array @F
+      stores them in the array @F
 -F    in conjunction with -a, takes a chosen delimeter as an argument
 -l    adds a newline to everything we print; automatically chomps input if used
-         with -n or -p
--T    "taint mode"; any data coming into program is tainted
+      with -n or -p
+-T    taint mode; any data coming into program is tainted
 -d    runs the debugger
 
 ---------------------------------- DEBUGGER -----------------------------------
