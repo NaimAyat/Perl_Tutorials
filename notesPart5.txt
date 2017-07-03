@@ -1,4 +1,4 @@
----------- Notes on chapter 7 of Beginning Perl (Simon Cozens, 2000). ----------
+---------- Notes on Chapter 7 of Beginning Perl (Simon Cozens, 2000). ----------
 
 Perl supports references, not pointers. The difference:
 A pointer is a variable which stores the address of another variable.
