@@ -1,4 +1,4 @@
----------- Notes on chapter 6 of Beginning Perl (Simon Cozens, 2000). ----------
+---------- Notes on Chapter 6 of Beginning Perl (Simon Cozens, 2000). ----------
 
 ------------------------------ READING FILES -----------------------------------
 
