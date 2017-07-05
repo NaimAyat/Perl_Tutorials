@@ -1,0 +1,190 @@
+---------- Notes on chapter 11 of Beginning Perl (Simon Cozens, 2000). ---------
+
+Perl "functions" are called "subroutines" because they don't return values by
+default; a return statement must be explicitly declared.
+________________________________________________________________________________
+
+Turning references into objects using the "bless" operator:
+   bless ( reference, package );
+For example:
+   bless ( $a, "Person" );
+   # $a is now a "Person" reference instead of a hash/array/scalar reference
+________________________________________________________________________________
+
+Storing attributes:
+   my $attribute = "green";
+   my $object = \$attribute;
+   bless ( $object, "Simple" );
+   # Now we have class Simple that stores an object with attribute "green"
+Changing attributes;
+   $attribute = $$object;
+   $$object = "red";
+________________________________________________________________________________
+
+Constructors:
+
+Make a hash reference, then bless it into the class.
+
+   package Person;
+   sub new {
+      my $self = {};
+      bless ($self, "Person");
+      return $self;
+   }
+
+Now to create a Person:
+
+   my $person = Person->new();
+
+Considering inheritence: shift without any arguments means shift @_, so it
+takes the first element of the argument array. This gives us the first thing we
+passed, the class name.
+
+   sub new {
+      my $class = shift;
+      my $self = {};
+      bless($self, $class);
+      return $self;
+   }
+
+Providing attributes: we allow the user to specify the attributes of their newly
+created object with a hash by initializing $self to be a hash reference to the
+argument array @_.
+
+   sub new {
+      my $class = shift;
+      my $self = {@_};
+      bless($self, $class);
+      return $self;
+   }
+
+Now we can initialize a person with attributes using the constructor:
+   my $object = Person->new(
+      surname => "Ayat",
+      forename => "Naim",
+      phone => "3105551234"
+   };
+________________________________________________________________________________
+
+Accessors: use shift to get the object passed into the accessor, then take the
+relevant hash entry.
+
+   sub surname {
+      my $self = shift;
+      return $self->{surname};
+   }
+
+Syntax note:
+   $reference->{surname}; # Accesses a hash reference
+   $reference->[3]; # Accesses an array reference
+   $reference->(); # Accesses a function reference
+________________________________________________________________________________
+
+Generating an error message when an accessor is called with something that isn't
+an object:
+
+   use Carp;
+
+   sub surname {
+      my $self = shift;
+      unless (ref $self) {
+         croak "Should call surname() With an object, not a class";
+      }
+      return $self->{surname};
+   }
+________________________________________________________________________________
+
+Get-Set Methods:
+
+   sub surname {
+      my $self = shift;
+      unless (ref $self) {
+         croak "Should call surname() With an object, not a class";
+      }
+
+      # Receive more data
+      my $data = shift;
+      # Set the address if there's any data there
+      $self->{address} = $data if defined $data;
+
+      return $self->{surname};
+   }
+________________________________________________________________________________
+
+Class Attributes: say we want a population count for each new person created
+during program execution.
+
+   package Person;
+   my $Population = 0;
+   sub new {
+      my $class = shift;
+      my $self = {@_};
+      bless($self, $class);
+      $Population++;
+      return $self;
+   }
+
+   sub headcount { $Population; }
+
+   print "Population is: ", Person->headcount;
+________________________________________________________________________________
+
+Private methods are denoted with an underscore at the beginning of their names.
+This is simply convention; it means nothing to the interpreter.
+
+Put the initializer statement in the constructor:
+
+   my @Everyone;
+
+   sub new {
+      my $class = shift;
+      my $self = {@_};
+      bless($self, $class);
+      $self->_init;;
+      return $self;
+   }
+
+Create the _init sub:
+   sub _init {
+      my $self = shift;
+      push @Everyone, $self;
+      carp "New object created."
+   }
+________________________________________________________________________________
+
+Inheritance:
+
+To build a new employee class based on person:
+
+   package Employee;
+   use Person9.pm;
+
+   our @ISA = "Person";
+
+Adding new methods: nothing special, just add methods.
+
+   sub raise {
+      my $self = shift;
+      my $newsalary = $self->salary + 2000;
+      $self->salary($newsalary);
+      return $self;
+   }
+
+Overriding methods: provide a new init:
+
+   sub _init {
+      my $self = shift;
+      my $employer = $self->employer || "unknown";
+      unless (ref $employer) {
+         my $new_o = Person->new( surname => $employer );
+         $self->employer($new_o);
+      }
+      # This means "call this method in the superclass"
+      $self->SUPER::_init();
+   }
+
+________________________________________________________________________________
+
+Ties: to tie a variable to a class:
+   tie $variable, 'Class', @parameters;
+________________________________________________________________________________
