@@ -1,1 +1,28 @@
 -------------------- Notes on Modern Perl (Chromatic, 2016) -------------------
+
+Default scalar variable: $_
+
+"Equivalent to saying 'it'." For example:
+    chomp $_;
+    chomp;
+Are equivalent.
+________________________________________________________________________________
+
+Default array variable: @_
+
+"Equivalent to saying 'they' or 'them'." For example:
+    shift @_;
+    shift;
+Are equivalent.
+________________________________________________________________________________
+
+These two statements are equivalent:
+readline $fh;
+<$fh>;
+________________________________________________________________________________
+
+@ARGV contains command-line arguments provided to the program.
+Exception: if you read from the null filehandle <>, Perl will treat every
+element of @ARGV as the name of a file to open for reading.
+________________________________________________________________________________
+
