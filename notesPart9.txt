@@ -12,11 +12,14 @@ For example:
 ________________________________________________________________________________
 
 Storing attributes:
+
    my $attribute = "green";
    my $object = \$attribute;
    bless ( $object, "Simple" );
    # Now we have class Simple that stores an object with attribute "green"
+   
 Changing attributes;
+
    $attribute = $$object;
    $$object = "red";
 ________________________________________________________________________________
