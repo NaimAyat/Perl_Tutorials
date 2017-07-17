@@ -1,2 +1,39 @@
 ------------------- Notes on Object Oriented Perl using Moose ------------------
 
+A class usually belongs to a package which provides its name:
+  package Dog {
+    use Moose;
+  }
+    
+Objects (AKA instances of the "Dog" class) are created with the arrow operator:  
+  my $fido = Dog->new;
+  my $scooby = Dog->new;
+    
+Methods: a method's first argument is its invocant ($self, by convention).
+We want our Dog class to have a bark() method.
+  package Dog {
+    use Moose;
+    sub bark {
+      my $self = shift;
+      say "Woof";
+    }
+  }
+  
+Now we can create a Dog instance which barks three times:
+  my $barker = Dog->new;
+  $barker-> bark for 1 .. 3;
+  
+---------------------------------- Attributes ----------------------------------
+
+To define attributes, declare them as part of the class:
+  package Dog {
+    use Moose;
+    # Dog objects have a name attribute, which is a read-only string.
+    has "name", is => "ro", isa => "Str";
+    
+Moose automatically creates an accessor named name(), which allows you to pass
+a name into Dog's constructor.
+  for my $name (qw( Alan Bob Charlie)) {
+    my $dog = Dog->new( name => $name );
+    say "Created a dog for ", $dog->name;
+  }
