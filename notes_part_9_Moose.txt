@@ -37,3 +37,35 @@ a name into Dog's constructor.
     my $dog = Dog->new( name => $name );
     say "Created a dog for ", $dog->name;
   }
+
+--------------------------------- Encapsulation --------------------------------
+
+Say we want to calculate a dog's age without giving internal details of the
+object to external users of the object.
+
+  package Dog {
+    use Moose;
+      has 'name',        is => 'ro', isa => 'Str';
+      has 'diet',        is => 'rw';
+      has 'birth_year',  is => 'ro', isa => 'Int';
+      sub age {
+        my $self = shift;
+          my $year = (localtime)[5] + 1900;
+          return $year - $self->birth_year;
+      }
+   }
+
+Now, we want to customize the Dog constructor to allow passing in an age
+parameter. We will also give a "default" value to users who construct
+a dog object without providing a birth year.
+
+  package Cat {
+     use Moose;
+     has 'name', is => 'ro', isa => 'Str';
+     has 'diet', is => 'rw', isa => 'Str';
+  
+     has 'birth_year',
+       is      => 'ro',
+       isa     => 'Int',
+       default => sub { (localtime)[5] + 1900 };
+  }
