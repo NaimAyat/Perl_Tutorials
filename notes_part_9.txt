@@ -24,4 +24,4 @@ ________________________________________________________________________________
 @ARGV contains command-line arguments provided to the program.
 Exception: if you read from the null filehandle <>, Perl will treat every
 element of @ARGV as the name of a file to open for reading.
-_______________________________________________________________________________
+________________________________________________________________________________
