@@ -2,7 +2,7 @@
 
 To check if something exists in a data set, simply use the "exists" keyword:
    if (not exists $rates{$to}) {
-      die "That input is invalid!\n";
+      die "That input is invalid!\n"; }
 ________________________________________________________________________________
 
 Boolean logic:
