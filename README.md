@@ -1,4 +1,3 @@
-# Perl_Tutorials
-A collection of Perl scripts and notes. 
+# NaimAyat.github.io
 
-Written for the purpose of practicing and teaching Perl while working at ZipRecruiter, Inc. (Summer 2017). 
+My personal website and professional portfolio built from scratch in HTML/CSS.
